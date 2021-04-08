@@ -11,7 +11,7 @@ import "channels"
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
-Notification.requestPermission().then(function (result) {alert("11 AM now. Please check temperature.")
+Notification.requestPermission().then(function (result) {//alert("11 AM now. Please check temperature.")
 // if(Notification.permission === 'granted')
 // {
 // 	alert("11 AM now. Please check temperature.");
