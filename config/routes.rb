@@ -9,6 +9,6 @@ Rails.application.routes.draw do
     root to: "devise/sessions#new"
   end
 
-  
+  post '/employee/attendance', "employee#attendance"
   get '/users/sign_in'
 end

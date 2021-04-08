@@ -15,7 +15,7 @@ ActiveRecord::Schema.define(version: 2021_04_08_102926) do
   create_table "attendances", charset: "utf8", force: :cascade do |t|
     t.bigint "user_id"
     t.date "attendace_date"
-    t.boolean "present", default: false
+    t.boolean "present_for_day", default: false
     t.time "temperature_time"
     t.float "temperature"
     t.datetime "created_at", precision: 6, null: false
