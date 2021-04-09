@@ -10,5 +10,6 @@ Rails.application.routes.draw do
   end
 
   post '/employee/attendance', "employee#attendance"
+  post '/employee/temperature', "employee#temperature"
   get '/users/sign_in'
 end

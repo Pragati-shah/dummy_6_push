@@ -1,10 +1,90 @@
 <h1>Employee#index</h1>
 <p>Find me in app/views/employee/index.html.erb</p>
 
- <div class="actions">
+
+
+<%if @month_attendances != []%>
+<table width="60%">
+<tr>
+<th>
+	Name of Employee
+</th>
+<th>
+	Date
+</th>	
+<th>
+	Present or Absent
+</th>
+</tr>
+<%@month_attendances.each do |attendances| %>
+<tr>
+	<td style="padding-left: 10%;">
+	<%= attendances.user.email %>
+</td>
+<td style="padding-left: 5%;">
+
+	<%= attendances.attendace_date.strftime("%d/%m/%Y") if !attendances.attendace_date.nil?%>
+</td>
+<td style="padding-left: 10%;">
+	<%= attendances.present_for_day.to_s %>
+</td>
+	</tr>
+<%end%>
+</table>	
+<%end%>
+<%if @temperature != []%>
+<table width="60%">
+<tr>
+<th>
+	Name of Employee
+</th>
+<th>
+	Date
+</th>
+<th>
+	Time
+</th>	
+<th>
+	Temperature
+</th>
+</tr>
+<%@temperature.each do |temperature| %>
+<tr>
+	<td style="padding-left: 10%;">
+	<%= temperature.user.email %>
+</td>
+<td style="padding-left: 5%;">
+	<%= temperature.created_at.strftime("%d/%m/%Y") %>
+</td>
+<td style="padding-left: 2%;">
+	<%= temperature.temperature_time.strftime("%H:%M:%S") if !temperature.temperature_time.nil?%>
+</td>
+<td style="padding-left: 10%;">
+	<%= temperature.temperature.to_s %>
+</td>
+	</tr>
+<%end%>
+</table>	
+<%end%>
+ 
+<div class="actions">
     <%= button_to "Mark Present" , employee_attendance_path%>
   </div>
 
+ <div class="actions">
+    <div>
+    	<%= form_tag('/employee/temperature') do %>
+  <div class="field">
+    <%= label_tag :temperature %><br />
+    <%= text_field_tag :temperature %>
+  </div>
+
+  <div class="actions">
+    <%= submit_tag "Submit Temperature" %>
+  </div>
+<% end %>
+    </div>
+  </div> 
   
   <div class="actions">
     <%= link_to "Log out" , destroy_user_session_path, :method => :delete %>
