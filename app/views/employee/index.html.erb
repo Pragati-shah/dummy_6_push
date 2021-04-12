@@ -84,8 +84,17 @@
   </div>
 <% end %>
     </div>
-  </div> 
+  </div>
+
+  <div>
+  	<%#= column_chart @data, stacked: true %>
+  	<%= line_chart({'below 36.5 and upto 36.5'=>@moderate_temp,'above 36.5 and below 36.7'=>@warning_temp,'above 36.7'=>@redzone_temp})
+
   
+
+ %>
+  </div> 
+ 
   <div class="actions">
     <%= link_to "Log out" , destroy_user_session_path, :method => :delete %>
   </div>

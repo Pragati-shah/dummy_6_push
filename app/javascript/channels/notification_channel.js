@@ -1,22 +1,27 @@
 import consumer from "./consumer"
-
 consumer.subscriptions.create("NotificationChannel", {
-  connected() {
+
+//App.notifications = App.cable.subscriptions.create("NotificationChannel", {
+  connected: function() {
     // Called when the subscription is ready for use on the server
   },
 
-  disconnected() {
+  disconnected: function() {
     // Called when the subscription has been terminated by the server
   },
 
-  received(data) {
-  	if (Notification.permission === 'granted') {
-      var title = 'Push Notification'
-      var body = data
-      var options = { body: body }
-      new Notification(title, options);
-    }
+  received: function(data) {
+  	//if (Notification.permission === 'granted') {
+      //var title = 'Push Notification'
+      //var body = data
+      //var options = { body: body }
+      //new Notification(title, options)
+      //	alert('hi');
+      //	alert('adsfasdf')
     // Called when there's incoming data on the websocket for this channel
+    	alert("It is 11 AM. Please check your temperature.")
+    //	alert(data);
+    //}
+  
   }
 });
-

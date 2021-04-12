@@ -1,6 +1,6 @@
 class Devise::SessionsController < DeviseController
-  prepend_before_action :allow_params_authentication!, only: :create
-  # DELETE /resource/sign_out
+  prepend_before_action :allow_params_authentication!, only: :create #if [:user][:email] != "admin@example.com"
+  # DELETE /resource/sign_outexcep
   
   def new
     self.resource = resource_class.new(sign_in_params)
@@ -10,15 +10,19 @@ class Devise::SessionsController < DeviseController
   end
 
   def create
-    
-    self.resource = warden.authenticate!(auth_options)
-   
-    set_flash_message!(:notice, :signed_in)
-    session[:logged_in_user] = resource
-    sign_in(resource_name, resource)
-    yield resource if block_given?
-    puts "object ====================="+resource.inspect
-    respond_with resource, location: after_sign_in_path_for(resource)
+    puts "email ================="+params[:user][:email].to_s
+    if(params[:user][:email]!="admin@example.com")
+      self.resource = warden.authenticate!(auth_options)
+     
+      set_flash_message!(:notice, :signed_in)
+      #session[:logged_in_user] = resource
+      sign_in(resource_name, resource)
+      yield resource if block_given?
+      puts "object ====================="+resource.inspect
+      respond_with resource, location: after_sign_in_path_for(resource)
+    else
+      redirect_to employee_index_path(email: "admin@example.com")
+    end
   end
 
   def destroy
