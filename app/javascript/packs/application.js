@@ -7,13 +7,14 @@ import Rails from "@rails/ujs"
 import Turbolinks from "turbolinks"
 import * as ActiveStorage from "@rails/activestorage"
 import "channels"
-
+require("chartkick/chart.js")
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
-Notification.requestPermission().then(function (result) {//alert("11 AM now. Please check temperature.")
-// if(Notification.permission === 'granted')
-// {
-// 	alert("11 AM now. Please check temperature.");
-// }	
-})
+//Notification.requestPermission().then(function (result) {})
+// Notification.requestPermission().then(function (result) {//alert("11 AM now. Please check temperature.")
+// // if(Notification.permission === 'granted')
+// // {
+// // 	alert("11 AM now. Please check temperature.");
+// // }	
+// })

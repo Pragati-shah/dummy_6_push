@@ -6,7 +6,18 @@ class EmployeeController < ApplicationController
   	#@logged_in_user1 = User.find(session[:logged_in_user]['id'])
     @month_attendances = current_user.attendances.where(["month(attendace_date) = #{Date.today.month}"])
     @temperature = Attendance.all.where(['temperature is not null'])
-    
+    @moderate_temp = Attendance.all.where("temperature <= 36.5 and date(created_at) = '#{Date.today}'").count
+    @warning_temp = Attendance.all.where("temperature <= 36.7 and temperature > 36.5 and date(created_at) = '#{Date.today}'").count
+    @redzone_temp = Attendance.all.where("temperature > 36.7 and date(created_at) = '#{Date.today}'").count
+    #@data = {'Near 36.5': "#{@moderate_temp}", 'Near 36.7': "#{@warning_temp}", 'Near 37.5 and above': "#{@redzone_temp}"}
+  	#@no_of_employee = Attendance.all.where("date(created_at) = '#{Date.today}'").count
+  	#@data = {@moderate_temp,@warning_temp, @redzone_temp}
+  	if Time.now.hour == 11
+			#puts Time.now.hour.to_s
+			ActionCable.server.broadcast "notifications_#{current_user.id}", {html: "<div>Hello world</div>"}
+
+	end
+	#render layout: 'index'
   end
   def attendance
   	#@logged_in_user1 = current_user
