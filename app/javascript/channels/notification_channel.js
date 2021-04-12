@@ -16,10 +16,10 @@ consumer.subscriptions.create("NotificationChannel", {
       //var body = data
       //var options = { body: body }
       //new Notification(title, options)
-      	alert('hi');
-      	alert('adsfasdf')
+      //	alert('hi');
+      //	alert('adsfasdf')
     // Called when there's incoming data on the websocket for this channel
-    	$("#notifications").html(data);
+    	alert("It is 11 AM. Please check your temperature.")
     //	alert(data);
     //}
   

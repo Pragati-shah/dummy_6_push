@@ -3,7 +3,7 @@ module ApplicationCable
   	identified_by :current_user
 
     def connect
-      self.current_user = find_verfied_user
+      #self.current_user = find_verfied_user
     end
 
     protected
@@ -12,7 +12,10 @@ module ApplicationCable
       if current_user = env['warden'].user
         current_user
       else
-        reject_unauthorized_connection
+      	#if([:email]!="admin@example.com")
+        	reject_unauthorized_connection
+       
+        #end	
       end
     end
   end
